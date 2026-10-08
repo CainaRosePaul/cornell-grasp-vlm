@@ -1,0 +1,47 @@
+{
+  "model": "Qwen/Qwen2.5-VL-3B-Instruct",
+  "quantization": "4-bit NF4 QLoRA",
+  "lora": {
+    "r": 16,
+    "lora_alpha": 32,
+    "target_modules": [
+      "o_proj",
+      "v_proj",
+      "up_proj",
+      "down_proj",
+      "q_proj",
+      "gate_proj",
+      "k_proj"
+    ],
+    "lora_dropout": 0.05
+  },
+  "dataset": "cornell-grasp",
+  "uses_depth": true,
+  "representation": "grasp rectangle drawn on the scene, square view at 2.6x the grasp size, resized to 336px, plus a second panel of height above the tabletop (0-150mm) recovered from the point cloud",
+  "num_train": 600,
+  "num_eval": 120,
+  "epochs": 3,
+  "learning_rate": 0.0001,
+  "width_shortcut_baseline": {
+    "rule": "predict good when the gripper gap is narrower than the threshold",
+    "threshold_px": 30.8,
+    "accuracy": 0.7083333333333334
+  },
+  "baseline": {
+    "accuracy": 0.5,
+    "correct": 60,
+    "total": 120,
+    "recall_good_grasp": 1.0,
+    "recall_bad_grasp": 0.0
+  },
+  "finetuned": {
+    "accuracy": 0.7833333333333333,
+    "correct": 94,
+    "total": 120,
+    "recall_good_grasp": 0.8,
+    "recall_bad_grasp": 0.7666666666666667
+  },
+  "training_minutes": 11.85,
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "note": "Split by source image; accuracy measured by comparing yes/no token logits rather than parsing generated text. The width shortcut baseline shows what rectangle geometry alone achieves, so the fine-tuned number can be judged against it."
+}

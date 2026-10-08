@@ -1,0 +1,41 @@
+{
+  "model": "Qwen/Qwen2.5-VL-3B-Instruct",
+  "quantization": "4-bit NF4 QLoRA",
+  "lora": {
+    "r": 16,
+    "lora_alpha": 32,
+    "target_modules": [
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "down_proj",
+      "q_proj",
+      "up_proj",
+      "gate_proj"
+    ],
+    "lora_dropout": 0.05
+  },
+  "dataset": "cornell-grasp",
+  "representation": "grasp rectangle drawn on the scene, square view at 2.6x the grasp size, resized to 336px",
+  "num_train": 600,
+  "num_eval": 120,
+  "epochs": 3,
+  "learning_rate": 0.0001,
+  "baseline": {
+    "accuracy": 0.5083333333333333,
+    "correct": 61,
+    "total": 120,
+    "recall_good_grasp": 1.0,
+    "recall_bad_grasp": 0.016666666666666666
+  },
+  "finetuned": {
+    "accuracy": 0.8916666666666667,
+    "correct": 107,
+    "total": 120,
+    "recall_good_grasp": 0.9166666666666666,
+    "recall_bad_grasp": 0.8666666666666667
+  },
+  "training_minutes": 10.43,
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "note": "Split by source image; accuracy measured by comparing yes/no token logits rather than parsing generated text."
+}

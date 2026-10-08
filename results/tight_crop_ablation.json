@@ -1,0 +1,22 @@
+{
+  "model": "Qwen/Qwen2.5-VL-3B-Instruct",
+  "quantization": "4-bit NF4 QLoRA",
+  "lora": {
+    "r": 16,
+    "lora_alpha": 32,
+    "target_modules": [
+      "q_proj",
+      "v_proj"
+    ],
+    "lora_dropout": 0.05
+  },
+  "dataset": "cornell-grasp",
+  "num_train": 300,
+  "num_eval": 60,
+  "epochs": 2,
+  "baseline_accuracy": 0.5166666666666667,
+  "finetuned_accuracy": 0.48333333333333334,
+  "training_minutes": 2.04,
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "note": "Cornell Grasp positive/negative rectangle crops, split by source image so train and eval do not share the same photo."
+}

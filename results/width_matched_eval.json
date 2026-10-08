@@ -1,0 +1,34 @@
+{
+  "width_matched_examples": 240,
+  "gap_median_good_px": 23.99,
+  "gap_median_bad_px": 23.97,
+  "shortcut_on_raw_pool": 0.7033,
+  "shortcut_on_matched_set": 0.5125,
+  "shortcut_threshold_px": 22.8,
+  "runs": {
+    "rgb": {
+      "accuracy": 0.8541666666666666,
+      "correct": 205,
+      "total": 240,
+      "recall_good_grasp": 0.925,
+      "recall_bad_grasp": 0.7833333333333333,
+      "adapter": "runs/cornell_lora"
+    },
+    "rgb+depth-concat": {
+      "accuracy": 0.7208333333333333,
+      "correct": 173,
+      "total": 240,
+      "recall_good_grasp": 0.7666666666666667,
+      "recall_bad_grasp": 0.675,
+      "adapter": "runs/cornell_lora_rgbd"
+    },
+    "rgb+depth-2img": {
+      "accuracy": 0.825,
+      "correct": 198,
+      "total": 240,
+      "recall_good_grasp": 0.8333333333333334,
+      "recall_bad_grasp": 0.8166666666666667,
+      "adapter": "runs/cornell_lora_rgbd_2img"
+    }
+  }
+}
